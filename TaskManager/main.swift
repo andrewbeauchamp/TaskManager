@@ -9,6 +9,6 @@
 import Foundation
 
 let taskManagerMenu = Menu( )
-taskManagerMenu.logIn()
-taskManagerMenu.go()
+taskManagerMenu.go()//This handles running the logic loop for the task manager Once we break out of this function the program will close
+
 
