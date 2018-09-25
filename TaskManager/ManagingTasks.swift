@@ -46,111 +46,110 @@ class ManagingTasks {
                 print("\(index). \(tasks[index].title)") //Give sthe title of the task an index/number for the user to type in
                 
             }
-            
-            if tasks.isEmpty  {
-                print("-You have no tasks to mark as complete enter any number or letter to return to the menu-") //Prompting the user to return to the menu when the task array is empty
-            }
-            while tasks.isEmpty {
-                taskManagerMenu.go()
-            }
-            
-            let validTaskIndex = Array(0..<tasks.count) //This validation is to make sure if a user puts in a number in the array
-            var userInput = Int(readLine( )!) //Input validation
-            
-            while userInput == nil || !validTaskIndex.contains(userInput!) {
-                print("Invalid Input please enter a usable input")
-                userInput = Int(readLine( )!)
-            }
-            for index in 0..<tasks.count {
-                if index == userInput {  //Changes the tasks completion status to true based on what index the suer put in
-                    tasks[index].completion = true
-                    print("Task Completed")
-                }
+        }
+        if tasks.isEmpty  {
+            print("-You have no tasks to mark as complete-") //Prompting the user to return to the menu when the task array is empty
+        }
+        while tasks.isEmpty {
+            taskManagerMenu.go()
+        }
+        
+        let validTaskIndex = Array(0..<tasks.count) //This validation is to make sure if a user puts in a number in the array
+        var userInput = Int(readLine( )!) //Input validation
+        
+        while userInput == nil || !validTaskIndex.contains(userInput!) {
+            print("Invalid Input please enter a usable input")
+            userInput = Int(readLine( )!)
+        }
+        for index in 0..<tasks.count {
+            if index == userInput {  //Changes the tasks completion status to true based on what index the suer put in
+                tasks[index].completion = true
+                print("Task completed")
             }
         }
     }
-        func markTasksUncomplete ( ) {
-            print("Please enter which Task you would like to mark as uncomplete")//Prompting the user to enter the task
-            for index in 0..<tasks.count {
-                if tasks[index].completion == true { //completion == true so that the user can't mark a uncompleted task uncompleted again
-                    print("\(index). \(tasks[index].title)") //Give the title of the task an index/number for the user to type in
-                }
-            }
-            if tasks.isEmpty {
-                print("-You have no tasks to mark as uncomplete enter any number or letter to return to the menu-") //Prompting the user to return to the menu when the task array is empty
-            }
-            
-            while tasks.isEmpty {
-                taskManagerMenu.go()
-            }
-            
-            let validTaskIndex = Array(0..<tasks.count) //This validation is to make sure if a user puts in an input
-            var userInput = Int(readLine( )!) //Input validation
-            
-            while userInput == nil || !validTaskIndex.contains(userInput!) {
-                print("Invalid Input please enter a usable input")
-                userInput = Int(readLine( )!)
-            }
-            
-            for index in 0..<tasks.count {
-                if index == userInput {  //Changes the tasks completion status to true based on what index the suer put in
-                    tasks[index].completion = false
-                    print("Task marked as uncompleted")
-                }
-            }
-        }
-        
-        func listOfAllTasks ( ) { //lists all tasks in the array
-            print("Here is the list of all tasks")
-            for task in tasks {
-                print("\(task.title)- \(task.detailsOfTask)")
+    func markTasksUncomplete ( ) {
+        print("Please enter which Task you would like to mark as uncomplete")//Prompting the user to enter the task
+        for index in 0..<tasks.count {
+            if tasks[index].completion == true { //completion == true so that the user can't mark a uncompleted task uncompleted again
+                print("\(index). \(tasks[index].title)") //Give the title of the task an index/number for the user to type in
                 
             }
-            print("If this list is empty than feel free to use the Create new tasks option by pressing 1")
+            
         }
-        func listOfUncompletedTasks ( ) {
-            print("Here is the list of uncompleted tasks")
-            for task in tasks {
-                if task.completion == false{ //If the task in the array is false then it is printed
-                    print("\(task.title)- \(task.detailsOfTask)")
-                }
-            }
+        if tasks.isEmpty {
+            print("-You have no tasks to mark as uncomplete-") //Prompting the user to return to the menu when the task array is empty
         }
         
-        func listOfCompletedTasks ( ) {
-            print("Here is the list of the completed tasks")
-            for completedTask in tasks {
-                if completedTask.completion == true{ //If the task in the tasks array is completed then it is printed
-                    print("\(completedTask.title)- \(completedTask.detailsOfTask)")
-                }
-            }
+        while tasks.isEmpty { //Brings the user back to the menu
+            taskManagerMenu.go()
         }
         
-        func deleteATask ( ) {
-            //List all of our task titles with a number for the user to select
-            for index in 0..<tasks.count {
-                print("\(index). \(tasks[index].title)")
-            }
-            print("Please enter the number of the task want to remove")//Prompt the user to enter in an index
-            if tasks.isEmpty {
-                print("-You have no tasks to delete enter any number or letter to return to the menu-") //Prompting the user to return to the menu
-            }
-            var userInput = Int(readLine()!)
-            //Make var to hold all possible index for our array
-            let validTaskIndex = Array(0..<tasks.count)
-            //Checking to make sure the task array is empty and directing the user back to the menu to create a new task
-            while tasks.isEmpty {
-                taskManagerMenu.go()
-            }
-            //Checking to make sure input is not nil and the number entered is not beyond the index of our array (validating the input)
-            while userInput == nil || !validTaskIndex.contains(userInput!) {
-                print("Invalid Input please enter a usable input")
-                userInput = Int(readLine( )!)
-            }
-            //Removing the task from the array
-            tasks.remove(at: userInput!)
-            print("Task Deleted")
+        let validTaskIndex = Array(0..<tasks.count) //This validation is to make sure if a user puts in an input
+        var userInput = Int(readLine( )!) //Input validation
+        
+        while userInput == nil || !validTaskIndex.contains(userInput!) {
+            print("Invalid Input please enter a usable input")
+            userInput = Int(readLine( )!)
         }
+        
+        for index in 0..<tasks.count {
+            if index == userInput {  //Changes the tasks completion status to true based on what index the suer put in
+                tasks[index].completion = false
+                print("Task uncompleted")
+            }
+        }
+    }
+    
+    func listOfAllTasks ( ) { //lists all tasks in the array
+        for task in tasks {
+            print("\(task.title)- \(task.detailsOfTask)")
+            
+        }
+        print("If this list is empty than feel free to use the Create new tasks option by pressing 1")
+    }
+    
+    func listOfUncompletedTasks ( ) {
+        for task in tasks {
+            if task.completion == false{ //If the task in the array is false then it is printed
+                print("\(task.title)- \(task.detailsOfTask)")
+            }
+        }
+    }
+    
+    func listOfCompletedTasks ( ) {
+        for completedTask in tasks {
+            if completedTask.completion == true{ //If the task in the tasks array is completed then it is printed
+                print("\(completedTask.title)- \(completedTask.detailsOfTask)")
+            }
+        }
+    }
+    
+    func deleteATask ( ) {
+        //List all of our task titles with a number for the user to select
+        for index in 0..<tasks.count {
+            print("\(index). \(tasks[index].title)")
+        }
+        print("Please enter the number of the task want to remove")//Prompt the user to enter in an index
+        if tasks.isEmpty {
+            print("-You have no tasks to delete-") //Prompting the user to return to the menu
+        }
+        while tasks.isEmpty {
+            taskManagerMenu.go()
+        }
+        var userInput = Int(readLine()!)
+        //Make var to hold all possible index for our array
+        let validTaskIndex = Array(0..<tasks.count)
+        //Checking to make sure the task array is empty and directing the user back to the menu to create a new task
+        //Checking to make sure input is not nil and the number entered is not beyond the index of our array (validating the input)
+        while userInput == nil || !validTaskIndex.contains(userInput!) {
+            print("Invalid Input please enter a usable input")
+            userInput = Int(readLine( )!)
+        }
+        //Removing the task from the array
+        tasks.remove(at: userInput!)
+        print("Task Deleted")
+    }
     
 }
 
