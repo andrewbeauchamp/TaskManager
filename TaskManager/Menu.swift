@@ -59,7 +59,7 @@ class Menu {
         case "1":
             print("You have selected to create a new task") //All print statements above a function that was called is to prompt the user to type something in
             taskManager.addTask()
-            
+            print("Task added")
         case "2":
             print("You have selected to see a list of all tasks.")
             taskManager.listOfAllTasks()
